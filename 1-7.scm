@@ -1,4 +1,5 @@
 
+; 今思ったが、全体をコピーするのはなんだかバカバカしいので、次からは関数内関数の使用を控えたほうが良さそう
 (define (sqrt x)
 
   (define (sqrt-iter guess x)
@@ -13,12 +14,6 @@
     (/ (+ x y) 2))
 
   (define (good-enough? guess x)
-    (< (abs (- (square guess) x)) 0.001))
+    (< (abs (- (square guess) x)) (* guess 0.00001)))
     
   (sqrt-iter 1.0 x))
-
-(define (A x y)
-  (cond ((= y 0) 0)
-        ((= x 0) (* 2 y))
-        ((= y 1) 2)
-        (else (A (- x 1) (A x (- y 1))))))
